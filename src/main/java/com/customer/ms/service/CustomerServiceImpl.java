@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.customer.ms.model.Customer;
 import com.customer.ms.model.CustomerM;
 import com.customer.ms.repository.CustomerRepository;
 
@@ -31,6 +32,16 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	public CustomerM addCustomer(CustomerM customerM) {
+		return customerRepository.save(customerM);
+	}
+
+	@Override
+	public void removeCustomer(String cusId) {
+		customerRepository.deleteById(cusId);
+	}
+
+	@Override
+	public CustomerM updateCustomer(CustomerM customerM) {
 		return customerRepository.save(customerM);
 	}
 }

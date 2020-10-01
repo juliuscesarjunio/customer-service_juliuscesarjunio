@@ -35,23 +35,23 @@ public class CustomerController {
 		return list;
 	}
 	
-	@RequestMapping(value = "/customers/{cusId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/customer/{cusId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public Customer getCustomer(@PathVariable("cusId") String cusId) {
 		return customerDAO.getCustomer(cusId);
 	}
 	
-	@RequestMapping(value = "/customers", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/customer", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public Customer addCustomer(@RequestBody Customer customer) {
 		return customerDAO.addCustomer(customer);
 	}
 	
-	@RequestMapping(value = "/customers/{cusId}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/customer/{cusId}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public void deleteCustomer(@PathVariable("cusId") String cusId) {
 		customerDAO.removeCustomer(cusId);
 	}
 	
-	@RequestMapping(value = "/customers", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public Customer deleteCustomer(@RequestBody Customer customer) {
+	@RequestMapping(value = "/customer", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
+	public Customer updateCustomer(@RequestBody Customer customer) {
 		return customerDAO.updateCustomer(customer);
 	}
 	
@@ -62,13 +62,23 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value = "/mongoCustomer/{cusId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public CustomerM getMongoCustomers(@PathVariable("cusId") String cusId) {
+	public CustomerM getMongoCustomer(@PathVariable("cusId") String cusId) {
 		return customerService.findById(cusId);
 	}
 	
 	@RequestMapping(value = "/mongoCustomer", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public CustomerM addMongoCustomer(@RequestBody CustomerM customerM) {
 		return customerService.addCustomer(customerM);
+	}
+	
+	@RequestMapping(value = "/mongoCustomer/{cusId}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
+	public void deleteMongoCustomer(@PathVariable("cusId") String cusId) {
+		customerService.removeCustomer(cusId);
+	}
+	
+	@RequestMapping(value = "/mongoCustomer", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
+	public CustomerM updateMongoCustomer(@RequestBody CustomerM customerM) {
+		return customerService.updateCustomer(customerM);
 	}
 
 }
